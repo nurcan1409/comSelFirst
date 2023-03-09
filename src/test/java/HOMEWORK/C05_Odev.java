@@ -3,7 +3,9 @@ package HOMEWORK;
 import org.bouncycastle.pqc.crypto.newhope.NHOtherInfoGenerator;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import utilities.BaseTest;
 
 import java.util.List;
@@ -11,21 +13,50 @@ import java.util.List;
 public class C05_Odev extends BaseTest {
 
 
+/*
 
-@Test
-    public void test01() {
+    ● https://the-internet.herokuapp.com/dropdown adresine gidin.
 
-    //Go to URL: http://demo.guru99.com/test/guru99home/
-    driver.get("http://demo.guru99.com/test/guru99home/");
-    // Find the number of iframes on the page.
-    List<WebElement> linklist=driver.findElements(By.xpath("//iframe"));
-    System.out.println("linklist.size() = " + linklist.size());
-    // Link to the fourth iframe (JMeter Made Easy) (https://www.guru99.com/live selenium project.html) click here.
-    driver.switchTo().frame("a077aa5e");
-    driver.findElement(By.xpath("//img[@src='Jmeter720.png']")).click();
-    // Exit the iframe and return to the main page.
+    1. Index kullanarak Seçenek 1’i (Option 1) seçin ve yazdırın.
 
-   driver.switchTo().defaultContent();
+    2. Value kullanarak Seçenek 2'yi (Option 2) seçin ve yazdırın.
+
+    3. Visible Text (Görünen metin) kullanarak Seçenek 1’i (Option 1) seçin ve yazdırın.
+
+    4. Tüm dropdown değerleri(value) yazdırın.
+
+    5. Dropdown'un boyutunu bulun, Dropdown'da 4 öğe varsa konsolda True, değilse False yazdırın.
+
+*/
+
+
+    @Test
+    public void tes03() {
+        driver.get("https://the-internet.herokuapp.com/dropdown");
+WebElement dropDown=driver.findElement(By.id("dropdown"));
+        Select select=new Select(dropDown);
+        select.selectByIndex(1);
+        System.out.println("select.getFirstSelectedOption().getText() = " + select.getFirstSelectedOption().getText());
+        select.selectByValue("2");
+        System.out.println("select.getFirstSelectedOption().getText() = " + select.getFirstSelectedOption().getText());
+        select.selectByVisibleText("Option 1");
+        System.out.println("select.getFirstSelectedOption().getText() = " + select.getFirstSelectedOption().getText());
+        List<WebElement>AllOptions=select.getOptions();
+        for (WebElement w:AllOptions
+             ) {
+            System.out.println("w.getText() = " + w.getText());
+        }
+       if(AllOptions.size()==4) {
+           System.out.println("true");
+       }else System.out.println("false");
+
+
+    }
+
+
+
+
+
 
 }
 
@@ -36,4 +67,8 @@ public class C05_Odev extends BaseTest {
 
 
 
-}
+
+
+
+
+
